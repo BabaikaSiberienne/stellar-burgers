@@ -38,7 +38,7 @@ export const ingredientsSlice = createSlice({
     selIngredients: (state) => state.ingredients,
     selLoading: (state) => state.loading
   },
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(getIngredients.pending, (state) => {
         state.loading = true;
