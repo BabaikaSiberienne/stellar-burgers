@@ -1,10 +1,11 @@
 import { combineSlices, createReducer } from '@reduxjs/toolkit';
-import { TIngredient } from '@utils-types';
-import { createAction } from '@reduxjs/toolkit';
-import { useState } from 'react';
 import { ingredientsSlice } from '../slices/ingredientsSlice';
+import { burgerConstructorElementSlice } from '../slices/burgerConstructorElementSlice';
 
-export const rootReducer = combineSlices(ingredientsSlice);
+export const rootReducer = combineSlices(
+  ingredientsSlice,
+  burgerConstructorElementSlice
+);
 
 // const ADD_INGREDIENT = "ADD_INGREDIENT"
 // const REMOVE_INGREDIENT = "REMOVE_INGREDIENT"
