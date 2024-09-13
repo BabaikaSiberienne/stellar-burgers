@@ -42,9 +42,11 @@ export const burgerConstructorElementSlice = createSlice({
     }
   },
   selectors: {
-    getConstructorSelector: (state) => state
+   selItem: (state) => state
   }
 });
 
 export const { addIngredient, removeIngredient, freeBin, moveIngredient } =
   burgerConstructorElementSlice.actions;
+
+export const { selItem } = burgerConstructorElementSlice.selectors
