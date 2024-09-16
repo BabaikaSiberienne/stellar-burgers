@@ -48,21 +48,6 @@ export const ingredientsSlice = createSlice({
       });
   }
 });
-
 export const { selBuns, selMains, selSauces, selIngredients, selLoading } =
   ingredientsSlice.selectors;
 export default ingredientsSlice.reducer;
-// addIngredient: {
-//     reducer: (state, action: PayloadAction<TConstructorIngredient>) => {
-//         state.ingredients.push(action.payload)
-//     },
-//     prepare: (ingredient: TIngredient) => {
-//         const id = nanoid();
-//     return { payload: {...ingredient, id} };
-//     }
-// },
-// removeIngredient: (state, action: PayloadAction<string>) => {
-//     state.ingredients = state.ingredients.filter(i => i._id != action.id)
-// }
-
-// export const getIngredients = createAction('GET_INGREDIENTS')

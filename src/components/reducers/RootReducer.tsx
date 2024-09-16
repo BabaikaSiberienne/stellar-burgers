@@ -1,10 +1,16 @@
 import { combineSlices, createReducer } from '@reduxjs/toolkit';
 import { ingredientsSlice } from '../slices/ingredientsSlice';
 import { burgerConstructorElementSlice } from '../slices/burgerConstructorElementSlice';
+import { burgerConstructorSlice } from '../slices/burgerConstructorSlice';
+import { feedSlice } from '../slices/feedSlice';
+import { postedOrdersSliceState } from '../slices/postedOrdersSlice';
 
 export const rootReducer = combineSlices(
   ingredientsSlice,
-  burgerConstructorElementSlice
+  burgerConstructorElementSlice,
+  burgerConstructorSlice,
+  feedSlice,
+  postedOrdersSliceState
 );
 
 // const ADD_INGREDIENT = "ADD_INGREDIENT"

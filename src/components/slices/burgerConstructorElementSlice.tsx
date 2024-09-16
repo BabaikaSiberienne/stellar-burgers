@@ -30,23 +30,23 @@ export const burgerConstructorElementSlice = createSlice({
     },
     removeIngredient: (state, action: PayloadAction<string>) => {
       state.ingredients = state.ingredients.filter(
-        (i) => i._id !== action.payload
+        (i) => i.id !== action.payload
       );
     },
     freeBin: () => initialState,
     moveIngredient: (state, action) => {
-      let temp = state.ingredients[action.payload.index1];
+      const temp = state.ingredients[action.payload.index1];
       state.ingredients[action.payload.index1] =
         state.ingredients[action.payload.index2];
       state.ingredients[action.payload.index2] = temp;
     }
   },
   selectors: {
-   selItem: (state) => state
+    selItem: (state) => state
   }
 });
 
+export const { selItem } = burgerConstructorElementSlice.selectors;
+
 export const { addIngredient, removeIngredient, freeBin, moveIngredient } =
   burgerConstructorElementSlice.actions;
-
-export const { selItem } = burgerConstructorElementSlice.selectors
