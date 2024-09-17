@@ -34,7 +34,7 @@ export const feedSlice = createSlice({
   selectors: {
     selFeedState: (state) => state,
     selFeedOrders: (state) => state.orders,
-    selFeedError: (state) => state.error
+    selFeed: (state) => state.feed
   },
   extraReducers(builder) {
     builder
@@ -54,5 +54,4 @@ export const feedSlice = createSlice({
   }
 });
 
-export const { selFeedOrders, selFeedState, selFeedError } =
-  feedSlice.selectors;
+export const { selFeedOrders, selFeedState, selFeed } = feedSlice.selectors;

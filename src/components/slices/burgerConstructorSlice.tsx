@@ -29,7 +29,11 @@ export const getOrder = createAsyncThunk(
 export const burgerConstructorSlice = createSlice({
   name: 'constructorOrderData',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearOrder: (state) => {
+      state.orderModelData = null;
+    }
+  },
   selectors: {
     selOrderModelData: (state) => state.orderModelData,
     selOrderRequest: (state) => state.orderRequest
@@ -69,3 +73,5 @@ export const burgerConstructorSlice = createSlice({
 
 export const { selOrderModelData, selOrderRequest } =
   burgerConstructorSlice.selectors;
+
+export const { clearOrder } = burgerConstructorSlice.actions;

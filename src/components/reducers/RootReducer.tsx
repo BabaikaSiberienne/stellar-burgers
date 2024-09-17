@@ -4,13 +4,15 @@ import { burgerConstructorElementSlice } from '../slices/burgerConstructorElemen
 import { burgerConstructorSlice } from '../slices/burgerConstructorSlice';
 import { feedSlice } from '../slices/feedSlice';
 import { postedOrdersSliceState } from '../slices/postedOrdersSlice';
+import { userSlice } from '../slices/userAuthSlice';
 
 export const rootReducer = combineSlices(
   ingredientsSlice,
   burgerConstructorElementSlice,
   burgerConstructorSlice,
   feedSlice,
-  postedOrdersSliceState
+  postedOrdersSliceState,
+  userSlice
 );
 
 // const ADD_INGREDIENT = "ADD_INGREDIENT"
