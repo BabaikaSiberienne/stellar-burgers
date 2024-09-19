@@ -22,7 +22,7 @@ import { getUser } from '../slices/userAuthSlice';
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUser);
+    dispatch(getUser());
     dispatch(getIngredients());
   }, [dispatch]);
 

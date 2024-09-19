@@ -11,16 +11,18 @@ export const Feed: FC = () => {
   const orders: TOrder[] = useSelector(selFeedOrders);
 
   useEffect(() => {
-    dispatch(getFeed()), [];
-  });
+    dispatch(getFeed());
+  }, []);
   if (!orders.length) {
     return <Preloader />;
   }
 
-  <FeedUI
-    orders={orders}
-    handleGetFeeds={() => {
-      dispatch(getFeed());
-    }}
-  />;
+  return (
+    <FeedUI
+      orders={orders}
+      handleGetFeeds={() => {
+        dispatch(getFeed());
+      }}
+    />
+  );
 };
