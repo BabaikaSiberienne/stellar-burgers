@@ -29,12 +29,13 @@ const App = () => {
   const location = useLocation();
   const backLocation = location.state?.background;
   const nav = useNavigate();
+
   return (
     <div className={styles.app}>
       <AppHeader />
       <Routes location={backLocation || location}>
         <Route path='/' element={<ConstructorPage />} />
-        <Route path='feed/' element={<Feed />} />
+        <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
 
