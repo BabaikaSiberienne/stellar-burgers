@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import { rootReducer } from '../components/reducers/RootReducer';
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
 
-const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+// const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
 
 const store = configureStore({
   reducer: rootReducer,
