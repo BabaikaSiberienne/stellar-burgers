@@ -43,8 +43,8 @@ export const burgerConstructorSlice = createSlice({
       .addCase(postOrder.pending, (state) => {
         state.orderRequest = true;
         state.loading = true;
-        state.error = null
-        state.orderModelData = null
+        state.error = null;
+        state.orderModelData = null;
       })
       .addCase(postOrder.rejected, (state, action) => {
         state.orderRequest = false;

@@ -105,7 +105,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.user = payload.user;
         state.auth = true;
-        state.error = null
+        state.error = null;
         setCookie('accesToken', payload.accessToken);
         localStorage.setItem('refreshToken', payload.refreshToken);
       })
@@ -168,7 +168,7 @@ export const userSlice = createSlice({
       .addCase(logoutUser.rejected, (state, { error }) => {
         state.error = 'error';
         state.loading = false;
-        state.auth = true
+        state.auth = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.loading = false;
