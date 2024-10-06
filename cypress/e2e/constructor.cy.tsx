@@ -7,7 +7,7 @@ describe('template spec', () => {
         cy.intercept({ method: 'GET', url: 'api/ingredients' }, { fixture: "ingredients.json" }).as('ingredients');
         cy.intercept({ method: "GET", url: "api/auth/user" }, { fixture: "user.json" }).as("user");
         cy.intercept({ method: "POST", url: "api/orders" }, { fixture: "order.json" }).as("order");
-        cy.visit('http://localhost:4000/');
+        cy.visit('/');
     })
 
     it('loading mocks', () => {
@@ -86,7 +86,7 @@ describe('template spec', () => {
 
 
     it('check auth', () => {
-        cy.visit('http://localhost:4000/profile')
+        cy.visit('/profile')
         cy.get(`[data-cy='userName']`)
             .should('have.value', 'Babaika')
         cy.get(`[data-cy='userEmail']`)

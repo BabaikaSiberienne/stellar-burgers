@@ -104,7 +104,7 @@ export const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.user;
-        state.auth = true;
+        state.auth = false;
         state.error = null;
         setCookie('accesToken', payload.accessToken);
         localStorage.setItem('refreshToken', payload.refreshToken);
