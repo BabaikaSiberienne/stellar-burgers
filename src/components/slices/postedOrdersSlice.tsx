@@ -1,6 +1,6 @@
 import { TOrder } from '@utils-types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getOrdersApi } from '@api';
+import { getOrdersApi } from '../../utils/burger-api';
 
 type TPostedOrdersState = {
   orders: TOrder[];
@@ -33,9 +33,9 @@ export const postedOrdersSliceState = createSlice({
         state.loading = true;
         state.orders = [];
       })
-      .addCase(getPostOrders.rejected, (state, { error }) => {
+      .addCase(getPostOrders.rejected, (state, action) => {
         state.loading = false;
-        state.error = error.message as string;
+        state.error = 'error';
       })
       .addCase(getPostOrders.fulfilled, (state, { payload }) => {
         state.loading = false;

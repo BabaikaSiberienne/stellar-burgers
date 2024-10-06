@@ -1,4 +1,4 @@
-import { getOrderByNumberApi, orderBurgerApi } from '@api';
+import { getOrderByNumberApi, orderBurgerApi } from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 
@@ -9,7 +9,7 @@ type TBurgerConstructorSliceState = {
   error: string | null;
 };
 
-const initialState: TBurgerConstructorSliceState = {
+export const initialState: TBurgerConstructorSliceState = {
   loading: false,
   orderRequest: false,
   orderModelData: null,
@@ -43,30 +43,31 @@ export const burgerConstructorSlice = createSlice({
       .addCase(postOrder.pending, (state) => {
         state.orderRequest = true;
         state.loading = true;
+        state.error = null;
+        state.orderModelData = null;
       })
-      .addCase(postOrder.rejected, (state, { error }) => {
+      .addCase(postOrder.rejected, (state, action) => {
         state.orderRequest = false;
         state.loading = false;
-        state.error = error.message as string;
+        state.error = 'error';
       })
-      .addCase(postOrder.fulfilled, (state, { payload }) => {
+      .addCase(postOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.orderModelData = payload.order;
+        state.orderModelData = action.payload.order;
         state.orderRequest = false;
       })
       .addCase(getOrder.pending, (state) => {
         state.loading = true;
         state.orderRequest = true;
       })
-      .addCase(getOrder.rejected, (state, { error }) => {
+      .addCase(getOrder.rejected, (state, action) => {
         state.orderRequest = false;
         state.loading = false;
-        state.error = error.message as string;
+        state.error = 'error';
       })
-      .addCase(getOrder.fulfilled, (state, { payload }) => {
+      .addCase(getOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.orderModelData = payload.orders[0];
-        state.orderRequest = true;
+        state.orderModelData = action.payload.orders[0];
       });
   }
 });

@@ -1,0 +1,52 @@
+{
+    "success": true,
+    "orders": [
+        {
+            "_id": "669787e3119d45001b4f9860",
+            "ingredients": [
+                "643d69a5c3f7b9001cfa093d",
+                "643d69a5c3f7b9001cfa0941",
+                "643d69a5c3f7b9001cfa0940",
+                "643d69a5c3f7b9001cfa0949",
+                "643d69a5c3f7b9001cfa094a",
+                "643d69a5c3f7b9001cfa0943",
+                "643d69a5c3f7b9001cfa0945",
+                "643d69a5c3f7b9001cfa093d"
+            ],
+            "status": "done",
+            "name": "Самый крутой в мире бургер",
+            "createdAt": "2024-07-17T08:59:15.286Z",
+            "updatedAt": "2024-07-17T08:59:15.709Z",
+            "number": 11111
+        },
+        {
+            "_id": "669787b3119d45001b4f985f",
+            "ingredients": [
+                "643d69a5c3f7b9001cfa093d",
+                "643d69a5c3f7b9001cfa0941",
+                "643d69a5c3f7b9001cfa0941",
+                "643d69a5c3f7b9001cfa093e",
+                "643d69a5c3f7b9001cfa0940",
+                "643d69a5c3f7b9001cfa093d"
+            ],
+            "status": "done",
+            "name": "Булка-мясо-соус-булка",
+            "createdAt": "2024-07-17T08:58:27.019Z",
+            "updatedAt": "2024-07-17T08:58:27.431Z",
+            "number": 22222
+        },
+        {
+            "_id": "669785a3119d45001b4f9855",
+            "ingredients": [
+                "643d69a5c3f7b9001cfa093d",
+                "643d69a5c3f7b9001cfa093e",
+                "643d69a5c3f7b9001cfa093d"
+            ],
+            "status": "done",
+            "name": "Просто какой-то бургер",
+            "createdAt": "2024-07-17T08:49:39.480Z",
+            "updatedAt": "2024-07-17T08:49:39.966Z",
+            "number": 33333
+        }
+    ]
+    }
