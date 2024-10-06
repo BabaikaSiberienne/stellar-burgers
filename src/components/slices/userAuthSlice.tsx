@@ -21,34 +21,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import { deleteCookie, setCookie } from '../../utils/cookie';
 
-//   export const loginUser = createAsyncThunk(
-//     'user/loginUser',
-//     async ({ email, password }: Omit<TRegisterData, 'name'>) => {
-//       return await loginUserApi({ email, password })
-//     }
-//   );
-//   export const userSlice = createSlice({
-//     name: 'user',
-//     initialState,
-//       extraReducers: (builder) => {
-//         builder
-//               .addCase(loginUser.pending, (state) => {
-//             state.loginUserRequest = true;
-//             state.loginUserError = null;
-//               })
-//         .addCase(loginUser.rejected, (state, action) => {
-//               state.loginUserRequest = false;
-//             state.loginUserError = action.payload;
-//             state.isAuthChecked = true;
-//         })
-//         .addCase(loginUser.fulfilled, (state, action) => {
-//                 state.data = action.payload.user;
-//             state.loginUserRequest = false;
-//                   state.isAuthenticated = true;
-//             state.isAuthChecked = true;
-//         }
-//     }
-//   });
 type TUserAuthSliceState = {
   loading: boolean;
   error: null | string;
@@ -114,7 +86,7 @@ export const userSlice = createSlice({
       .addCase(getUser.rejected, (state, { error }) => {
         state.loading = false;
         state.user = null;
-        state.error = error.message as string;
+        state.error = 'error';
       })
       .addCase(getUser.fulfilled, (state, { payload }) => {
         state.loading = false;
@@ -125,14 +97,15 @@ export const userSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addCase(registerUser.rejected, (state, { error }) => {
-        state.error = error.message as string;
+      .addCase(registerUser.rejected, (state, action) => {
+        state.error = 'error';
         state.loading = false;
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.user;
         state.auth = true;
+        state.error = null
         setCookie('accesToken', payload.accessToken);
         localStorage.setItem('refreshToken', payload.refreshToken);
       })
@@ -141,7 +114,7 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(resetPass.rejected, (state, { error }) => {
-        state.error = error.message as string;
+        state.error = 'error';
         state.loading = false;
       })
       .addCase(resetPass.fulfilled, (state) => {
@@ -154,7 +127,7 @@ export const userSlice = createSlice({
       })
       .addCase(forgotPass.rejected, (state, { error }) => {
         state.loading = false;
-        state.error = error.message as string;
+        state.error = 'error';
       })
       .addCase(forgotPass.fulfilled, (state) => {
         state.error = null;
@@ -165,12 +138,11 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(updUser.rejected, (state, { error }) => {
-        state.error = error.message as string;
+        state.error = 'error';
         state.loading = false;
       })
       .addCase(updUser.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.auth = true;
         state.user = payload.user;
       })
       .addCase(loginUser.pending, (state) => {
@@ -178,7 +150,7 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(loginUser.rejected, (state, { error }) => {
-        state.error = error.message as string;
+        state.error = 'error';
         state.loading = false;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
@@ -194,13 +166,13 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(logoutUser.rejected, (state, { error }) => {
-        state.error = error.message as string;
+        state.error = 'error';
         state.loading = false;
+        state.auth = true
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.loading = false;
         state.user = null;
-        state.auth = false;
         state.error = null;
         deleteCookie('accessToken');
         localStorage.removeItem('refreshToken');
