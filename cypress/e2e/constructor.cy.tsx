@@ -4,10 +4,15 @@ describe('template spec', () => {
         localStorage.setItem('refreshToken', 'mockToken');
         cy.fixture("user.json"); 
         cy.fixture("order.json");
+        cy.fixture('feed.json');
         cy.intercept({ method: 'GET', url: 'api/ingredients' }, { fixture: "ingredients.json" }).as('ingredients');
         cy.intercept({ method: "GET", url: "api/auth/user" }, { fixture: "user.json" }).as("user");
         cy.intercept({ method: "POST", url: "api/orders" }, { fixture: "order.json" }).as("order");
+        cy.intercept({method: 'GET', url: 'api/orders/all'}, { fixture: 'feed.json' }).as('feed');
         cy.visit('/');
+        cy.get(`[data-cy='constr']`).as('constr')
+        cy.get(`[data-cy='ingr']`).as('ingr')
+
     })
 
     it('loading mocks', () => {
@@ -16,27 +21,27 @@ describe('template spec', () => {
     });
 
     it('check add ingredient in constr', () => {
-        cy.get(`[data-cy='constr']`)
+        cy.get('@constr')
             .should('not.contain.text', 'Булка');
     });
 
     it('check add ingredient', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .next()
             .click({ force: true })
-        cy.get(`[data-cy='constr']`)
+        cy.get('@constr')
             .should('contain.text', 'Булка');
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .last()
             .next()
             .click({ force: true })
-        cy.get(`[data-cy='constr']`)
+        cy.get('@constr')
             .should('contain.text', 'Соус');
     })
 
     it('check open modal', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .children()
             .first()
@@ -46,7 +51,7 @@ describe('template spec', () => {
 
 
     it('click on Esc', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .children()
             .first()
@@ -56,7 +61,7 @@ describe('template spec', () => {
             .type('{esc}')
     })
     it('click on pic', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .children()
             .first()
@@ -70,7 +75,7 @@ describe('template spec', () => {
             .should('not.exist');
     })
     it('click on overlay', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .children()
             .first()
@@ -94,15 +99,15 @@ describe('template spec', () => {
     })
 
     it('check order', () => {
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .first()
             .next()
             .click({ force: true })
-        cy.get(`[data-cy='ingr']`)
+        cy.get('@ingr')
             .last()
             .next()
             .click({ force: true })
-        cy.get(`[data-cy='constr']`)
+        cy.get('@constr')
             .children()
             .last()
             .find('button')
@@ -115,7 +120,7 @@ describe('template spec', () => {
         cy.get(`[data-cy='overlay']`)
             .click('top', { force: true })
 
-        cy.get(`[data-cy='constr']`)
+        cy.get('@constr')
             .should('contain.not.text', 'Булка')
             .and('contain.not.text', 'Соус')
     })
